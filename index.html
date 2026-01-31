@@ -2,11 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"content="width="device-width,initial-scale=1.0">
-<title>John's Website</title>
+  <title>John's Website</title>
+  <link rel="stylesheet"href="style.css">
 </head>
 <body>
-<hi>This is the title</h1>
+  <canvas id="scene></canvas>
+  <script src="objects.js"></script>
+  <script>
+    // Tiny 3D scene: a cube
+    const ctx=document.getElementById('scene');
+    const ctx=canvas.getContect('2d');
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerheigt;
+
+    const cube={x: canvas.width/2,y: canvas.height/2, size: 100 };
+
+    function draw() {
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.strokeStyle = 'white';
+      ctx.strokeRect(cube.x - cube.size/2, cube.y - cube.size/2,cube.size. cube.size);
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
 </body>
 </html>
-  
