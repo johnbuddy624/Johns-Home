@@ -2,29 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>John's Website</title>
+  <title>John's Test Page</title>
   <link rel="stylesheet"href="style.css">
 </head>
 <body>
-  <canvas id="scene></canvas>
-  <script src="objects.js"></script>
-  <script>
-    // Tiny 3D scene: a cube
-    const ctx=document.getElementById('scene');
-    const ctx=canvas.getContect('2d');
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerheigt;
+  <h1 id="title">Hello from John's Website</h1>
+  <p>This page prove HTML, CSS, JS are working</p>
 
-    const cube={x: canvas.width/2,y: canvas.height/2, size: 100 };
+  <button id="btn">Click Me</button>
 
-    function draw() {
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-      ctx.strokeStyle = 'white';
-      ctx.strokeRect(cube.x - cube.size/2, cube.y - cube.size/2,cube.size. cube.size);
-      requestAnimationFrame(draw);
-    }
-    draw();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

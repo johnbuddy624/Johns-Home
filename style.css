@@ -1,7 +1,13 @@
 body {
-  margin: 0;
-  background-color: bblack;
+  background-color: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+ padding-top: 50px;
 }
-canvas {
-  display: blick;
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }

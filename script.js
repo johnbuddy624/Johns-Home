@@ -1,3 +1,8 @@
-// Starter objects file
-//You can add more 3d objects here later
-console.log("Objects loaded");
+const button =
+document.getElementById("btn");
+const title =
+document.getElementById("title");
+
+button.addEventListener("click", () => {
+  title.textContent = "You clicked the button";
+});
