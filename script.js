@@ -13,8 +13,8 @@ function animate() {
     if (scale <= 1.0) growing = true;
   }
 
-  title.style.transform = 'scale($
-{scale})';
+  title.style.transform = `scale($
+{scale})`;
   requestAnimationFrame(animate);
 }
 
