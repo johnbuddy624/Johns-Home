@@ -39,10 +39,8 @@ const STAR_COUNT = 300;
 
 for (let i = 0; i < STAR_COUNT; i++) {
   stars.push({
-    x: Math.random() * canvas.width -
-canvas.width / 2,
-    y: Math.random() * canvas.height -
-canvas.height / 2,
+    x: Math.random() * canvas.width - canvas.width / 2,
+    y: Math.random() * canvas.height - canvas.height / 2,
     z: Math.random() * canvas.width
   });
 }
@@ -63,12 +61,7 @@ function drawStars() {
     const px = star.x * k + canvas.width / 2;
     const py = star.y * k + canvas.height / 2;
 
-    if (
-      px >= 0 &&
-      px <= canvas.width &&
-      py >= 0 &&
-      py <= canvas.height
-    ) {
+    if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
 
       ctx.beginPath();
       ctx.arc(px, py, 4, 0, Math.PI * 2);
