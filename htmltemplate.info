@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ========================= -->
+  <!-- ======= META DATA ======= -->
+  <!-- ========================= -->
+
+  <!-- Character encoding (almost always UTF-8) -->
+  <meta charset="UTF-8">
+
+  <!-- Makes the site scale correctly on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Title shown in browser tab -->
+  <title>My Project</title>
+
+
+  <!-- ========================= -->
+  <!-- ========= CSS ============ -->
+  <!-- ========================= -->
+  <!-- ALL visual styling goes here -->
+  <style>
+
+    /* ===== GLOBAL PAGE STYLES ===== */
+    /* Applies to the whole page */
+    html, body {
+      margin: 0;              /* Remove default spacing */
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;      /* Page background color */
+      color: white;           /* Default text color */
+      font-family: sans-serif;
+      overflow: hidden;       /* Prevent scrollbars */
+    }
+
+    /* ===== LAYOUT SECTIONS ===== */
+    /* Example container */
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ===== UI ELEMENTS ===== */
+    /* Example button style */
+    button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    /* Example animation */
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================= -->
+  <!-- ========= HTML =========== -->
+  <!-- ========================= -->
+  <!-- ALL visible structure goes here -->
+
+  <!-- Main wrapper -->
+  <div class="container">
+
+    <!-- Headings / text -->
+    <h1>Title Goes Here</h1>
+    <p>This is a paragraph.</p>
+
+    <!-- Buttons / links -->
+    <button>Click Me</button>
+
+    <!-- Canvas for graphics (stars, mountains, games, etc.) -->
+    <canvas id="scene"></canvas>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- ========= JAVASCRIPT ===== -->
+  <!-- ========================= -->
+  <!-- ALL logic, movement, drawing, interaction goes here -->
+  <script>
+
+    /* ===== BASIC SETUP ===== */
+
+    // Grab elements from HTML
+    const canvas = document.getElementById("scene");
+    const ctx = canvas.getContext("2d");
+
+    // Screen size variables
+    let w, h;
+
+    // Resize canvas to fill screen
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    // Run resize once and on window resize
+    window.addEventListener("resize", resize);
+    resize();
+
+
+    /* ===== DATA / OBJECTS ===== */
+    // Store things like stars, particles, mountains, players here
+
+    const exampleObject = {
+      x: w / 2,
+      y: h / 2,
+      size: 20
+    };
+
+
+    /* ===== DRAW FUNCTIONS ===== */
+    // Anything that draws to canvas goes here
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      // Example drawing
+      ctx.fillStyle = "white";
+      ctx.beginPath();
+      ctx.arc(exampleObject.x, exampleObject.y, exampleObject.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+
+    /* ===== ANIMATION LOOP ===== */
+    // Runs every frame (60fps)
+
+    function animate() {
+      draw();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+
+    /* ===== INTERACTION ===== */
+    // Mouse, keyboard, touch input goes here
+
+    window.addEventListener("click", (e) => {
+      exampleObject.x = e.clientX;
+      exampleObject.y = e.clientY;
+    });
+
+  </script>
+
+</body>
+</html>
