@@ -1,0 +1,162 @@
+/* ================= CSS PROPERTIES ================= */
+
+Color: “Sets the text color. Example: color: red;”
+
+Background-color: “Sets background color. Example: background-color: black;”
+
+Background-image: “Sets background image. Example: background-image: url(‘image.jpg’);”
+
+Background-size: “Controls size of background image. Example: background-size: cover;”
+
+Background-repeat: “Controls repetition of background. Example: background-repeat: no-repeat;”
+
+Background-position: “Sets position of background. Example: background-position: center;”
+
+Width: “Sets element width. Example: width: 100px;”
+
+Height: “Sets element height. Example: height: 50px;”
+
+Max-width: “Maximum width. Example: max-width: 500px;”
+
+Min-width: “Minimum width. Example: min-width: 200px;”
+
+Max-height: “Maximum height. Example: max-height: 400px;”
+
+Min-height: “Minimum height. Example: min-height: 100px;”
+
+Margin: “Outer spacing. Example: margin: 10px;”
+
+Margin-top: “Top margin. Example: margin-top: 5px;”
+
+Margin-right: “Right margin. Example: margin-right: 5px;”
+
+Margin-bottom: “Bottom margin. Example: margin-bottom: 5px;”
+
+Margin-left: “Left margin. Example: margin-left: 5px;”
+
+Padding: “Inner spacing. Example: padding: 10px;”
+
+Padding-top: “Top padding. Example: padding-top: 5px;”
+
+Padding-right: “Right padding. Example: padding-right: 5px;”
+
+Padding-bottom: “Bottom padding. Example: padding-bottom: 5px;”
+
+Padding-left: “Left padding. Example: padding-left: 5px;”
+
+Border: “Shorthand for border. Example: border: 1px solid black;”
+
+Border-width: “Border thickness. Example: border-width: 2px;”
+
+Border-style: “Border style. Example: border-style: dashed;”
+
+Border-color: “Border color. Example: border-color: red;”
+
+Border-radius: “Rounded corners. Example: border-radius: 10px;”
+
+Box-shadow: “Shadow around element. Example: box-shadow: 2px 2px 5px gray;”
+
+Text-shadow: “Shadow behind text. Example: text-shadow: 1px 1px 2px black;”
+
+Font-family: “Font type. Example: font-family: Arial, sans-serif;”
+
+Font-size: “Font size. Example: font-size: 16px;”
+
+Font-weight: “Boldness. Example: font-weight: bold;”
+
+Font-style: “Italic style. Example: font-style: italic;”
+
+Line-height: “Spacing between lines. Example: line-height: 1.5;”
+
+Text-align: “Text alignment. Example: text-align: center;”
+
+Text-decoration: “Underline, line-through, etc. Example: text-decoration: underline;”
+
+Text-transform: “Uppercase/lowercase. Example: text-transform: uppercase;”
+
+Letter-spacing: “Space between letters. Example: letter-spacing: 2px;”
+
+Word-spacing: “Space between words. Example: word-spacing: 5px;”
+
+Display: “Element type. Example: display: block;”
+
+Position: “Positioning type. Example: position: absolute;”
+
+Top: “Top offset. Example: top: 10px;”
+
+Right: “Right offset. Example: right: 10px;”
+
+Bottom: “Bottom offset. Example: bottom: 10px;”
+
+Left: “Left offset. Example: left: 10px;”
+
+z-index: “Stack order. Example: z-index: 5;”
+
+overflow: “Content overflow. Example: overflow: hidden;”
+
+overflow-x: “Horizontal overflow. Example: overflow-x: scroll;”
+
+overflow-y: “Vertical overflow. Example: overflow-y: auto;”
+
+flex-direction: “Direction in flex container. Example: flex-direction: row;”
+
+justify-content: “Align items horizontally. Example: justify-content: center;”
+
+align-items: “Align items vertically. Example: align-items: flex-start;”
+
+align-self: “Align individual item. Example: align-self: center;”
+
+flex-wrap: “Wrap items in flex. Example: flex-wrap: wrap;”
+
+grid-template-columns: “Column layout. Example: grid-template-columns: 1fr 2fr;”
+
+grid-template-rows: “Row layout. Example: grid-template-rows: auto 200px;”
+
+gap: “Spacing between items. Example: gap: 10px;”
+
+cursor: “Mouse cursor style. Example: cursor: pointer;”
+
+opacity: “Transparency. Example: opacity: 0.5;”
+
+visibility: “Visible or hidden. Example: visibility: hidden;”
+
+transition: “Animation over time. Example: transition: all 0.3s ease;”
+
+transform: “Move, rotate, scale. Example: transform: rotate(45deg);”
+
+animation: “Apply CSS animation. Example: animation: float 2s infinite;”
+
+overflow-wrap: “Break long words. Example: overflow-wrap: break-word;”
+
+white-space: “Control text wrapping. Example: white-space: nowrap;”
+
+object-fit: “How content fits box. Example: object-fit: cover;”
+
+object-position: “Position of content in box. Example: object-position: center;”
+
+float: “Float element left or right. Example: float: left;”
+
+clear: “Clear floated elements. Example: clear: both;”
+
+visibility: “Show or hide element. Example: visibility: visible;”
+
+outline: “Outline around element. Example: outline: 2px solid red;”
+
+clip-path: “Shape the element. Example: clip-path: circle(50% at 50% 50%);”
+
+pointer-events: “Control mouse events. Example: pointer-events: none;”
+
+mix-blend-mode: “Blend with background. Example: mix-blend-mode: multiply;”
+
+filter: “Apply visual filter. Example: filter: blur(5px);”
+
+backdrop-filter: “Filter behind element. Example: backdrop-filter: blur(6px);”
+
+overflow-anchor: “Prevent jump scroll. Example: overflow-anchor: none;”
+
+user-select: “Allow text selection. Example: user-select: none;”
+
+scroll-behavior: “Smooth scroll. Example: scroll-behavior: smooth;”
+
+object-position: “Position image/video in box. Example: object-position: center;”
+
