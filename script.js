@@ -1,86 +1,95 @@
-//==EXPLANATIONS==//
-//==Camera → tracks mouse to create parallax==//
+//=====EXPLANATIONS=====//
+//==starsCanvas → JS draws starfield with glow==//
+//==worldCanvas → JS draws 3D mountains / layers==//
+//==ui → JS handles mouse movement for parallax==//
+//==enterBtn → triggers interaction==//
 
-//==Starfield → background stars with depth==//
+//==JS STARTS==//
 
-//==Mountains → multiple layers for 3D parallax effect==//
+// GET CANVAS ELEMENTS
+const starsCanvas = document.getElementById("stars");
+const starsCtx = starsCanvas.getContext("2d");
 
-//==animate() → main render loop==//
+const worldCanvas = document.getElementById("world");
+const worldCtx = worldCanvas.getContext("2d");
 
-//==Buttons → basic interaction wired==//
+const ui = document.getElementById("ui");
+const enterBtn = document.getElementById("enterBtn");
 
-
-
-/* ================= RESIZE ================= */
-const stars = document.getElementById("stars");
-const world = document.getElementById("world");
-const sctx = stars.getContext("2d");
-const ctx = world.getContext("2d");
-
+// RESIZE CANVASES
 function resize() {
-  stars.width = world.width = innerWidth;
-  stars.height = world.height = innerHeight;
+  starsCanvas.width = window.innerWidth;
+  starsCanvas.height = window.innerHeight;
+  worldCanvas.width = window.innerWidth;
+  worldCanvas.height = window.innerHeight;
 }
 window.addEventListener("resize", resize);
 resize();
 
-/* ================= CAMERA (FAKE 3D) ================= */
-const camera = { x: 0, y: 0 };
-window.addEventListener("mousemove", e => {
-  camera.x = (e.clientX - innerWidth/2) * 0.04;
-  camera.y = (e.clientY - innerHeight/2) * 0.04;
-});
-
-/* ================= STARFIELD ================= */
-const starfield = Array.from({ length: 600 }, () => ({
-  x: Math.random()*innerWidth,
-  y: Math.random()*innerHeight,
-  z: Math.random()*0.4 + 0.1
+// ===== STARFIELD =====
+const stars = Array.from({ length: 600 }, () => ({
+  x: Math.random() * starsCanvas.width,
+  y: Math.random() * starsCanvas.height,
+  size: Math.random() * 2 + 0.5,
+  speed: Math.random() * 0.5 + 0.1,
+  glow: Math.random() * 0.8 + 0.2
 }));
 
 function drawStars() {
-  sctx.clearRect(0,0,stars.width,stars.height);
-  sctx.fillStyle = "white";
-  starfield.forEach(s => {
-    sctx.globalAlpha = s.z;
-    sctx.fillRect(
-      s.x - camera.x*s.z,
-      s.y - camera.y*s.z,
-      2, 2
-    );
+  starsCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+  stars.forEach(star => {
+    star.x -= star.speed;
+    if (star.x < 0) star.x = starsCanvas.width;
+    starsCtx.fillStyle = `rgba(255,255,255,${star.glow})`;
+    starsCtx.beginPath();
+    starsCtx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    starsCtx.fill();
   });
+  requestAnimationFrame(drawStars);
 }
+drawStars();
 
-/* ================= MOUNTAINS / TERRAIN ================= */
-function drawMountain(baseY, depth, color) {
-  ctx.beginPath();
-  ctx.moveTo(0, world.height);
-  for (let x = 0; x <= world.width; x += 120) {
-    ctx.lineTo(
-      x - camera.x*depth,
-      baseY - Math.random()*140*depth
-    );
-  }
-  ctx.lineTo(world.width, world.height);
-  ctx.fillStyle = color;
-  ctx.fill();
+// ===== 3D WORLD / MOUNTAINS WITH PARALLAX =====
+const layers = [
+  { color: "#1a2a3f", depth: 0.2, peaks: 6, offset: 200 },
+  { color: "#2b4a6f", depth: 0.5, peaks: 5, offset: 150 },
+  { color: "#3b6a9f", depth: 0.8, peaks: 4, offset: 100 }
+];
+
+let mouse = { x: 0, y: 0 };
+window.addEventListener("mousemove", e => {
+  mouse.x = e.clientX / window.innerWidth;
+  mouse.y = e.clientY / window.innerHeight;
+});
+
+function drawWorld() {
+  worldCtx.clearRect(0, 0, worldCanvas.width, worldCanvas.height);
+
+  layers.forEach(layer => {
+    worldCtx.fillStyle = layer.color;
+    worldCtx.beginPath();
+    worldCtx.moveTo(0, worldCanvas.height);
+
+    const step = worldCanvas.width / (layer.peaks * 2);
+    for (let i = 0; i <= layer.peaks * 2; i++) {
+      const x = i * step;
+      const peak = worldCanvas.height - layer.offset - Math.random() * 100;
+      const parallaxX = (mouse.x - 0.5) * layer.depth * 50;
+      const parallaxY = (mouse.y - 0.5) * layer.depth * 50;
+      const y = peak + parallaxY;
+      worldCtx.lineTo(x + parallaxX, y);
+    }
+
+    worldCtx.lineTo(worldCanvas.width, worldCanvas.height);
+    worldCtx.closePath();
+    worldCtx.fill();
+  });
+
+  requestAnimationFrame(drawWorld);
 }
+drawWorld();
 
-/* ================= ANIMATION LOOP ================= */
-function animate() {
-  ctx.clearRect(0,0,world.width,world.height);
-
-  drawStars();
-  drawMountain(innerHeight*0.8, 0.2, "#050b14");
-  drawMountain(innerHeight*0.7, 0.4, "#0b1f3a");
-  drawMountain(innerHeight*0.6, 0.6, "#143c6e");
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-/* ================= BUTTON INTERACTION ================= */
-const enterBtn = document.getElementById("enterBtn");
+// ===== BUTTON INTERACTIVITY =====
 enterBtn.addEventListener("click", () => {
-  alert("Entering the universe!");
+  alert("Welcome to your 3D interactive universe!");
 });
