@@ -1,15 +1,7 @@
-//==EXPLANATIONS==//
-//==Styles everything visually==//
+/*=====EXPLANATIONS=====*/
+/*==CSS FOR BODY, CANVASES, AND UI==*/
 
-//==Layers z-index → ensures stars < mountains < UI==//
-
-//==pointer-events: none → lets mouse events pass through canvas==//
-
-//==Buttons & text are styled for glow + hover==//
-
-
-
-/* ================= RESET ================= */
+/*==CSS STARTS==*/
 html, body {
   margin: 0;
   padding: 0;
@@ -17,50 +9,59 @@ html, body {
   height: 100%;
   overflow: hidden;
   background: black;
-  font-family: system-ui, sans-serif;
+  font-family: sans-serif;
+  color: #cfe4ff;
 }
 
-/* ================= CANVASES ================= */
-canvas {
+/* STARFIELD CANVAS */
+#stars {
   position: fixed;
-  inset: 0;
-  pointer-events: none; /* lets you click buttons above */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-#stars { z-index: 0; }
-#world { z-index: 1; }
+/* WORLD CANVAS */
+#world {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
 
-/* ================= UI ================= */
+/* UI OVERLAY */
 #ui {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
   text-align: center;
 }
 
-h1 {
-  font-size: 56px;
-  text-shadow: 0 0 20px rgba(120,170,255,0.8);
+#ui h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #5a9cff;
 }
 
-button {
-  margin-top: 20px;
-  padding: 14px 28px;
-  font-size: 20px;
-  border-radius: 18px;
+#ui button {
+  padding: 12px 30px;
+  font-size: 22px;
+  border-radius: 12px;
   border: none;
-  cursor: pointer;
-  background: rgba(100,150,255,0.7);
+  background: rgba(50, 100, 200, 0.7);
   color: white;
-  box-shadow: 0 0 25px rgba(100,150,255,0.6);
-  transition: 0.2s;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(100, 150, 255, 0.7);
 }
 
-button:hover {
-  box-shadow: 0 0 40px rgba(100,150,255,0.8);
+#ui button:hover {
+  box-shadow: 0 0 35px rgba(100, 150, 255, 1);
 }
