@@ -1,0 +1,114 @@
+/* ================= JAVASCRIPT CONCEPTS ================= */
+
+/* Variables */
+Var: “Declares a variable (old way). Example: var x = 10;”
+Let: “Declares a variable (block-scoped). Example: let name = ‘John’;”
+Const: “Declares a constant (cannot be reassigned). Example: const pi = 3.14;”
+
+/* Data Types */
+Number: “Represents numbers. Example: let n = 42;”
+String: “Represents text. Example: let s = ‘Hello’;”
+Boolean: “Represents true/false. Example: let flag = true;”
+Array: “Holds a list of values. Example: let arr = [1,2,3];”
+Object: “Holds key-value pairs. Example: let obj = {name:’John’, age:30};”
+Null: “Represents empty value. Example: let a = null;”
+Undefined: “Variable without a value. Example: let b;”
+
+/* Operators */
++: “Addition. Example: 5 + 3;”
+-: “Subtraction. Example: 10 – 2;”
+*: “Multiplication. Example: 4 * 2;”
+/: “Division. Example: 8 / 2;”
+%: “Remainder. Example: 5 % 2;”
+++: “Increment. Example: i++;”
+--: “Decrement. Example: i--;”
+
+==: “Equality (loose). Example: 5 == ‘5’;”
+===: “Strict equality. Example: 5 === 5;”
+!=: “Not equal (loose). Example: 5 != ‘4’;”
+!==: “Strict not equal. Example: 5 !== ‘5’;”
+>: “Greater than. Example: 7 > 3;”
+<: “Less than. Example: 2 < 5;”
+>=: “Greater or equal. Example: 5 >= 5;”
+<=: “Less or equal. Example: 3 <= 4;”
+
+&&: “Logical AND. Example: true && false;”
+||: “Logical OR. Example: true || false;”
+!: “Logical NOT. Example: !true;”
+
+/* Functions */
+Function: “Declare a function. Example: function greet(){ console.log(‘Hi’); }”
+Return: “Return value from function. Example: return x + y;”
+Arrow functions: “Short function syntax. Example: const sum = (a,b)=>a+b;”
+
+/* Loops */
+For: “For loop. Example: for(let i=0;i<5;i++){ console.log(i); }”
+While: “While loop. Example: let i=0; while(i<5){ console.log(i); i++; }”
+Do…while: “Executes once, then loops. Example: do{ console.log(i); i++; } while(i<5);”
+For…of: “Iterate over array values. Example: for(const val of arr){ console.log(val); }”
+For…in: “Iterate over object keys. Example: for(const key in obj){ console.log(key,obj[key]); }”
+
+/* Conditions */
+If: “Conditional statement. Example: if(x>5){ console.log(‘Yes’); }”
+Else: “Alternative if. Example: else{ console.log(‘No’); }”
+Else if: “Additional condition. Example: else if(x==5){ console.log(‘Maybe’); }”
+Switch: “Multiple conditions. Example: switch(x){ case 1: …; break; }”
+Case: “Case in switch. Example: case 1: console.log(‘One’); break;”
+Default: “Default in switch. Example: default: console.log(‘Other’);”
+
+/* Events */
+addEventListener: “Attach event to element. Example: button.addEventListener(‘click’, ()=>alert(‘Hi’));”
+onclick: “Shortcut click event. Example: button.onclick = ()=>alert(‘Hi’);”
+onmouseover: “Mouse over event. Example: elem.onmouseover = ()=>console.log(‘Hover’);”
+onmouseout: “Mouse leave event. Example: elem.onmouseout = ()=>console.log(‘Leave’);”
+onkeydown: “Keyboard press. Example: document.onkeydown = e=>console.log(e.key);”
+
+/* DOM Manipulation */
+Document.getElementById: “Get element by ID. Example: let el = document.getElementById(‘myDiv’);”
+Document.getElementsByClassName: “Get elements by class. Example: let els = document.getElementsByClassName(‘box’);”
+Document.getElementsByTagName: “Get elements by tag. Example: let ps = document.getElementsByTagName(‘p’);”
+Document.querySelector: “Get first match. Example: let el = document.querySelector(‘.box’);”
+Document.querySelectorAll: “Get all matches. Example: let els = document.querySelectorAll(‘div’);”
+
+Element.innerHTML: “Change content. Example: el.innerHTML = ‘Hello’;”
+Element.textContent: “Change text only. Example: el.textContent = ‘Hello’;”
+Element.style: “Change style. Example: el.style.color = ‘red’;”
+Element.classList.add: “Add class. Example: el.classList.add(‘active’);”
+Element.classList.remove: “Remove class. Example: el.classList.remove(‘active’);”
+Element.classList.toggle: “Toggle class. Example: el.classList.toggle(‘active’);”
+
+/* Timers */
+setTimeout: “Run code once after delay. Example: setTimeout(()=>alert(‘Hi’),1000);”
+setInterval: “Run code repeatedly. Example: setInterval(()=>console.log(‘Ping’),1000);”
+clearTimeout: “Stop timeout. Example: clearTimeout(id);”
+clearInterval: “Stop interval. Example: clearInterval(id);”
+
+/* Objects & Arrays */
+Array.push: “Add item. Example: arr.push(4);”
+Array.pop: “Remove last. Example: arr.pop();”
+Array.shift: “Remove first. Example: arr.shift();”
+Array.unshift: “Add first. Example: arr.unshift(0);”
+Array.map: “Transform array. Example: let doubled = arr.map(x=>x*2);”
+Array.filter: “Filter array. Example: let evens = arr.filter(x=>x%2===0);”
+Array.forEach: “Loop array. Example: arr.forEach(x=>console.log(x));”
+Array.find: “Find first match. Example: arr.find(x=>x>3);”
+Array.includes: “Check if exists. Example: arr.includes(3);”
+
+Object.keys: “Get object keys. Example: Object.keys(obj);”
+Object.values: “Get object values. Example: Object.values(obj);”
+Object.entries: “Get key-value pairs. Example: Object.entries(obj);”
+Object.assign: “Copy/merge objects. Example: Object.assign(obj1,obj2);”
+
+/* Errors & Debugging */
+Console.log: “Print to console. Example: console.log(‘Hi’);”
+Console.error: “Print error. Example: console.error(‘Oops’);”
+Console.warn: “Print warning. Example: console.warn(‘Watch out’);”
+Debugger: “Pause execution in dev tools. Example: debugger;”
+
+/* Miscellaneous */
+Typeof: “Check type. Example: typeof x;”
+Instanceof: “Check object type. Example: obj instanceof Array;”
+New: “Create object. Example: let d = new Date();”
+This: “Current context. Example: console.log(this);”
+Delete: “Remove object property. Example: delete obj.name;”
+
