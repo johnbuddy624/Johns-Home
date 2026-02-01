@@ -1,20 +1,16 @@
 //=====EXPLANATIONS=====//
-//==<canvas id="stars"> → layer for stars==//
-
-//==<canvas id="world"> → layer for mountains/3D world==//
-
-//==<div id="ui"> → buttons & text overlay==//
-
-//==<link rel="stylesheet"> → links the CSS file==//
-
-//==<script src="script.js"> → links the JS file==//
+//==<canvas id="stars"> → background starfield layer==//
+//==<canvas id="world"> → 3D mountains / objects layer==//
+//==<div id="ui"> → overlay for buttons, text, interface==//
+//==<link rel="stylesheet" href="style.css"> → CSS styling==//
+//==<script src="script.js"> → JavaScript functionality==//
 
 //==HTML STARTS==//
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>3D Parallax Engine</title>
+  <title>3D Parallax Interactive Universe</title>
 
   <!-- LINK TO CSS -->
   <link rel="stylesheet" href="style.css">
@@ -22,14 +18,15 @@
 
 <body>
 
-  <!-- =============== CANVASES ================= -->
+  <!-- =============== CANVAS LAYERS ================= -->
   <canvas id="stars"></canvas>
   <canvas id="world"></canvas>
 
-  <!-- =============== UI ================= -->
+  <!-- =============== UI / INTERFACE ================= -->
   <div id="ui">
     <h1>My Universe</h1>
     <button id="enterBtn">Enter</button>
+    <p>Move your mouse to explore the 3D world</p>
   </div>
 
   <!-- =============== LINK TO JS ================= -->
