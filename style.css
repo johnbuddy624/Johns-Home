@@ -48,3 +48,11 @@ mainspace {
   z-index: 0;
 }
 
+maintitle {
+  color: blue;
+}
+
+mainsubtitle {
+  color: green;
+}
+
