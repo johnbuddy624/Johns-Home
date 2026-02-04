@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parallax & 3D Playground</title>
+<style>
+  /* ===========================
+     GLOBAL STYLES
+  =========================== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: sans-serif; overflow-x: hidden; background: #111; color: #fff; }
+
+  h1, p { text-align: center; padding: 1rem; }
+
+  /* ===========================
+     SECTION CONTAINER
+  =========================== */
+  .parallax-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+
+  /* ===========================
+     PARALLAX LAYERS
+  =========================== */
+  .parallax-layer {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    mix-blend-mode: screen;
+  }
+
+  /* SPEED DATA */
+  .layer-back { --speed: 0.2; z-index: 1; color: #ff5555; }
+  .layer-mid  { --speed: 0.5; z-index: 2; color: #55ff55; }
+  .layer-front{ --speed: 0.8; z-index: 3; color: #5555ff; }
+
+  /* ===========================
+     CONTENT LAYER
+  =========================== */
+  .parallax-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    top: 40%;
+  }
+
+  /* ===========================
+     3D EFFECTS
+  =========================== */
+  .card-tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  .card-tilt:hover {
+    transform: rotateX(10deg) rotateY(-10deg);
+  }
+
+  .flip {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+  }
+  .flip:hover {
+    transform: rotateY(180deg);
+  }
+
+  .scene-tilt {
+    transform: rotateX(5deg) rotateY(-5deg);
+  }
+
+  /* ===========================
+     ACCESSIBILITY
+  =========================== */
+  @media (prefers-reduced-motion: reduce) {
+    * { transform: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Parallax & 3D Playground</h1>
+<p>Scroll down to see layered effects. Hover cards to tilt/flip.</p>
+
+<!-- ===========================
+     PARALLAX SECTION
+=========================== -->
+<section class="parallax-section scene-tilt">
+
+  <!-- BACK LAYER -->
+  <div class="parallax-layer layer-back">BACK</div>
+
+  <!-- MID LAYER -->
+  <div class="parallax-layer layer-mid">MID</div>
+
+  <!-- FRONT LAYER -->
+  <div class="parallax-layer layer-front card-tilt flip">FRONT</div>
+
+  <!-- CONTENT -->
+  <div class="parallax-content">
+    <h1>CONTENT LAYER</h1>
+    <p>This layer stays readable while background layers move.</p>
+  </div>
+
+</section>
+
+<section class="parallax-section">
+  <div class="parallax-layer layer-back">BG LAYER</div>
+  <div class="parallax-layer layer-mid">MID LAYER</div>
+  <div class="parallax-layer layer-front">FRONT LAYER</div>
+  <div class="parallax-content">
+    <h1>Another Scene</h1>
+    <p>Mix and match effects freely.</p>
+  </div>
+</section>
+
+<!-- ===========================
+     JS: SCROLL-BASED PARALLAX
+=========================== -->
+<script>
+  // Throttle updates using requestAnimationFrame
+  let latestScrollY = 0;
+  let ticking = false;
+
+  const layers = document.querySelectorAll('.parallax-layer');
+
+  function updateParallax() {
+    layers.forEach(layer => {
+      const speed = parseFloat(getComputedStyle(layer).getPropertyValue('--speed')) || 0;
+      const offset = latestScrollY * speed;
+      layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+    ticking = false;
+  }
+
+  function onScroll() {
+    latestScrollY = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Initialize positions
+  updateParallax();
+</script>
+
+</body>
+</html>
