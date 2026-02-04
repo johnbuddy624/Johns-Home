@@ -48,3 +48,48 @@ Avoid when:
 ===================================================== -->
 <section class="parallax-section"></section>
 
+<!-- =====================================================
+PARALLAX LAYER
+Purpose:
+- A visual element that moves at a different
+  speed than scroll to create depth
+
+Notes:
+- data-speed or CSS --speed controls motion
+- Usually absolutely positioned
+
+Avoid:
+- Placing text content here
+===================================================== -->
+<div class="parallax-layer" data-speed="0.3"></div>
+
+<!-- =====================================================
+PARALLAX CONTENT
+Purpose:
+- Holds readable content that should remain stable
+
+Rules:
+- Content should almost never parallax
+- Always sits above layers
+
+Accessibility:
+- Keeps text readable and motion-safe
+===================================================== -->
+<div class="parallax-content"></div>
+
+<!-- =====================================================
+STICKY PARALLAX CONTAINER
+Purpose:
+- Pins a scene while scroll continues
+- Used for scroll storytelling
+
+Pairs with:
+- position: sticky in CSS
+
+Avoid:
+- Overusing (can feel heavy)
+===================================================== -->
+<div class="parallax-sticky"></div>
+
+
+
