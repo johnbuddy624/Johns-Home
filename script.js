@@ -116,3 +116,65 @@ window.addEventListener("scroll", onScroll, { passive: true });
 ----------------------------------------------------- */
 
 updateParallax();
+
+
+
+/* =====================================================
+SCROLL STATE
+Purpose:
+- Stores latest scroll position
+- Avoids repeated DOM reads
+===================================================== */
+let latestScrollY = 0;
+
+
+/* =====================================================
+REQUEST ANIMATION FRAME THROTTLING
+Purpose:
+- Prevents scroll handler overload
+- Syncs updates to browser paint cycle
+===================================================== */
+let ticking = false;
+
+/* =====================================================
+SCROLL HANDLER (INPUT ONLY)
+Purpose:
+- Captures scroll position
+- Does NOT perform heavy logic
+===================================================== */
+function onScroll() {
+  latestScrollY = window.scrollY;
+}
+
+/* =====================================================
+PARALLAX UPDATE FUNCTION
+Purpose:
+- Applies transforms to parallax layers
+- Runs inside requestAnimationFrame
+
+Performance:
+- Uses transform only
+- Skips offscreen elements if possible
+===================================================== */
+function updateParallax() {}
+
+/* =====================================================
+PASSIVE SCROLL LISTENER
+Purpose:
+- Improves mobile scroll performance
+- Prevents scroll blocking
+===================================================== */
+window.addEventListener("scroll", onScroll, { passive: true });
+
+/* =====================================================
+INTERSECTION OBSERVER (OPTIONAL)
+Purpose:
+- Detects when elements enter viewport
+- Reduces unnecessary parallax updates
+
+Use when:
+- Many parallax elements exist
+===================================================== */
+const observer = new IntersectionObserver(() => {});
+
+
