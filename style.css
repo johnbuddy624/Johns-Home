@@ -1,58 +1,109 @@
-html {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 2;
+/* =====================================================
+   PARALLAX CSS SKELETON
+   CSS handles layout, layers, and motion
+===================================================== */
+
+
+/* -----------------------------------------------------
+   1. ROOT VARIABLES
+   Central place for tuning motion globally
+----------------------------------------------------- */
+
+:root {
+  --scroll-y: 0;          /* updated by JS */
+  --parallax-max: 200px;  /* safety cap */
 }
 
-head {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: blue;
-  z-index: 3;
+
+/* -----------------------------------------------------
+   2. BASE RESET (important for smooth scrolling)
+----------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  position: fixed;
-  top: 0;
-  bottom: 0;
+  margin: 0;
+  overflow-x: hidden; /* prevent sideways drift */
+}
+
+
+/* -----------------------------------------------------
+   3. PARALLAX SECTION
+   Creates a positioning context for layers
+----------------------------------------------------- */
+
+.parallax-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+/* -----------------------------------------------------
+   4. PARALLAX LAYERS (the moving parts)
+----------------------------------------------------- */
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+
+  /* The parallax math lives here */
+  transform: translate3d(
+    0,
+    clamp(
+      calc(var(--scroll-y) * var(--speed)),
+      calc(var(--parallax-max) * -1),
+      var(--parallax-max)
+    ),
+    0
+  );
+}
+
+
+/* Images behave better this way */
+.parallax-layer img {
   width: 100%;
-  height: 90%;
-  background: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* -----------------------------------------------------
+   5. LAYER DEPTH (z-ordering)
+----------------------------------------------------- */
+
+.layer-back {
   z-index: 1;
 }
 
-maincanvas {
-  position: fixed;
-  inset: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 0;
+.layer-mid {
+  z-index: 2;
 }
 
-mainspace {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
+
+/* -----------------------------------------------------
+   6. CONTENT LAYER (no parallax)
+   Always readable, always stable
+----------------------------------------------------- */
+
+.parallax-content {
+  position: relative;
+  z-index: 3;
+  padding: 4rem;
+  color: white;
 }
 
-maintitle {
-  color: blue;
-}
 
-mainsubtitle {
-  color: green;
-}
+/* -----------------------------------------------------
+   7. ACCESSIBILITY
+   Respect reduced motion preferences
+----------------------------------------------------- */
 
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    transform: none !important;
+  }
+}
