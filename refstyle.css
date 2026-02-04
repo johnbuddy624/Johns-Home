@@ -1,0 +1,310 @@
+/* =====================================================================
+PARALLAX + 3D MASTER REFERENCE FILE
+=====================================================================
+
+PURPOSE
+- A personal pattern library for parallax, depth, and 3D effects
+- Copy pieces into real files as needed
+- Explanations focus on WHY + WHEN, not just HOW
+
+RULES
+- CSS handles visuals
+- JS feeds values, never layout
+- Content stays readable
+- Motion is optional, never required
+
+===================================================================== */
+
+
+/* =====================================================================
+HTML BUILDING BLOCKS
+===================================================================== */
+
+/*
+PARALLAX SECTION
+----------------
+<section class="parallax-section"></section>
+
+Purpose:
+- Defines a self-contained visual scene
+- Creates positioning + stacking context
+
+Use when:
+- Building layered or 3D effects
+Avoid when:
+- Effect is global only
+*/
+
+/*
+PARALLAX LAYER
+--------------
+<div class="parallax-layer" data-speed="0.3"></div>
+
+Purpose:
+- Visual-only element that moves at a different rate
+Rules:
+- Decorative only
+- No readable text
+*/
+
+/*
+CONTENT LAYER
+-------------
+<div class="parallax-content"></div>
+
+Purpose:
+- Holds text & UI
+Rule:
+- Content should almost never move
+*/
+
+/*
+STICKY SCENE
+------------
+<div class="parallax-sticky"></div>
+
+Purpose:
+- Scene pins while scroll continues
+Use:
+- Scroll storytelling
+Avoid:
+- Overuse (fatiguing)
+*/
+
+
+/* =====================================================================
+CORE CSS STRUCTURE
+===================================================================== */
+
+/*
+PARALLAX SECTION
+----------------
+Creates containment and prevents bleed
+*/
+.parallax-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*
+PARALLAX LAYER
+--------------
+Moving element — always transform-based
+*/
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/*
+CONTENT LAYER
+--------------
+Always above visuals
+*/
+.parallax-content {
+  position: relative;
+  z-index: 10;
+}
+
+
+/* =====================================================================
+SCROLL-DRIVEN PARALLAX (CSS VARIABLE PATTERN)
+===================================================================== */
+
+/*
+REQUIRES:
+- JS updates --scroll-y
+
+WHY:
+- Keeps math readable
+- CSS handles rendering
+*/
+
+:root {
+  --scroll-y: 0px;
+  --parallax-max: 200px;
+}
+
+.parallax-layer {
+  transform: translate3d(
+    0,
+    clamp(
+      calc(var(--scroll-y) * var(--speed)),
+      calc(var(--parallax-max) * -1),
+      var(--parallax-max)
+    ),
+    0
+  );
+}
+
+
+/* =====================================================================
+3D FOUNDATIONS (REAL DEPTH)
+===================================================================== */
+
+/*
+PERSPECTIVE CONTEXT
+-------------------
+Applied to parent
+Required for translateZ / rotateX / rotateY
+*/
+.perspective {
+  perspective: 1000px;
+}
+
+/*
+PRESERVE 3D
+-----------
+Allows children to retain depth
+*/
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/*
+Z-DEPTH TIERS
+-------------
+Closer = larger + sharper
+*/
+.depth-far   { transform: translateZ(-300px); }
+.depth-mid   { transform: translateZ(-150px); }
+.depth-near  { transform: translateZ(0); }
+
+
+/* =====================================================================
+3D EFFECTS PANTRY (PICK WHAT YOU WANT)
+===================================================================== */
+
+/*
+CARD TILT (HOVER)
+----------------
+Interactive depth illusion
+Avoid on mobile-only UIs
+*/
+.card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+.card-tilt:hover {
+  transform: rotateX(10deg) rotateY(-10deg);
+}
+
+/*
+PARALLAX DEPTH STACK
+-------------------
+Classic layered hero effect
+Limit layers to ~3
+*/
+.layer-back  { transform: translateZ(-300px) scale(1.3); }
+.layer-mid   { transform: translateZ(-150px) scale(1.15); }
+.layer-front { transform: translateZ(0); }
+
+/*
+FAKE DEPTH (MOBILE SAFE)
+-----------------------
+No perspective required
+*/
+.fake-depth {
+  transform: scale(1.1) translateY(40px);
+}
+
+/*
+ATMOSPHERIC DEPTH
+-----------------
+Distance via blur + opacity
+*/
+.atmosphere-far {
+  filter: blur(3px);
+  opacity: 0.7;
+}
+
+/*
+LIGHT / SHADOW DEPTH
+-------------------
+UI elevation illusion
+*/
+.depth-shadow {
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.2),
+    0 30px 60px rgba(0,0,0,0.15);
+}
+
+/*
+FLIP (3D PANEL)
+---------------
+Classic card flip
+*/
+.flip {
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+.flip:hover {
+  transform: rotateY(180deg);
+}
+
+/*
+SCENE TILT
+----------
+Entire scene rotates slightly
+Use sparingly
+*/
+.scene-tilt {
+  transform: rotateX(5deg) rotateY(-5deg);
+}
+
+
+/* =====================================================================
+OPTIONAL JS PATTERNS (REFERENCE ONLY)
+===================================================================== */
+
+/*
+SCROLL VARIABLE FEED
+-------------------
+Feeds CSS parallax math
+*/
+window.addEventListener("scroll", () => {
+  document.documentElement.style.setProperty(
+    "--scroll-y",
+    `${window.scrollY}px`
+  );
+}, { passive: true });
+
+/*
+RAF THROTTLING
+--------------
+Use when doing heavier JS logic
+*/
+let ticking = false;
+
+
+/* =====================================================================
+ACCESSIBILITY (NON-NEGOTIABLE)
+===================================================================== */
+
+/*
+REDUCED MOTION
+--------------
+Always include this
+*/
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* =====================================================================
+HARD RULES (LEARNED THE HARD WAY)
+=====================================================================
+
+- Never animate layout properties
+- Never parallax body text
+- ≤ 3 moving layers per scene
+- Perspective on parent, transform on child
+- Mobile first, desktop enhanced
+- If effect distracts from content, remove it
+
+===================================================================== */
